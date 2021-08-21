@@ -5,52 +5,42 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: palha <palha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/21 17:34:09 by palha             #+#    #+#             */
-/*   Updated: 2021/08/21 19:39:29 by palha            ###   ########.fr       */
+/*   Created: 2021/08/21 19:45:10 by palha             #+#    #+#             */
+/*   Updated: 2021/08/21 19:46:46 by palha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_isspace(int c)
-{
-	if (c == ' '
-		|| c == '\f'
-		|| c == '\n'
-		|| c == '\r'
-		|| c == '\t'
-		|| c == '\v')
-		return (1);
-	else
-		return (0);
-}
+static int	ft_check_overflow(int num, int c_minus);
 
 int	ft_atoi(const char *nptr)
 {
-	int	sign;
-	int	i;
-	int	nbr;
-	int	conv;
+	int	c_minus;
+	int	num;
+	int	ret;
 
-	sign = 1;
-	i = 0;
-	nbr = 0;
-	conv = 0;
-	while (ft_isspace(nptr[i]) == 1)
-		i++;
-	if (nptr[i] == '+' || nptr[i] == '-')
+	num = 0;
+	c_minus = 0;
+	while ((*nptr >= 9 && *nptr <= 13) || *nptr == 32)
+		nptr++;
+	if (*nptr == '-' || *nptr == '+')
 	{
-		if (nptr[i] == '-')
-			sign = -1;
-		i++;
+		if (*nptr == '-')
+			c_minus = 1;
+		nptr++;
 	}
-	while (ft_isdigit(nptr[i]) == 1)
+	while (*nptr >= '0' && *nptr <= '9')
 	{
-		nbr = (nptr[i] - '0');
-		conv = (conv * 10) + nbr;
-		i++;
+		num = num * 10 + (*nptr - '0');
+		nptr++;
 	}
-	return (conv * sign);
+	ret = ft_check_overflow(num, c_minus);
+	if (ret != 1)
+		return (ret);
+	if (c_minus)
+		return (num *= -1);
+	return (num);
 }
 
 static int	ft_check_overflow(int num, int c_minus)
