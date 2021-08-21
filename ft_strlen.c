@@ -6,7 +6,7 @@
 /*   By: palha <palha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/20 19:29:26 by palha             #+#    #+#             */
-/*   Updated: 2021/08/21 19:28:53 by palha            ###   ########.fr       */
+/*   Updated: 2021/08/21 19:30:56 by palha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ size_t	ft_strlen(const char *str)
 {
 	size_t	len;
 
-	if (!str)
-		return (0);
 	len = 0;
 	while (str[len])
 	{
