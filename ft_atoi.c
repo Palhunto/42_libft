@@ -6,7 +6,7 @@
 /*   By: palha <palha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/21 17:34:09 by palha             #+#    #+#             */
-/*   Updated: 2021/08/21 18:47:34 by palha            ###   ########.fr       */
+/*   Updated: 2021/08/21 19:39:29 by palha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,16 @@ int	ft_atoi(const char *nptr)
 		i++;
 	}
 	return (conv * sign);
+}
+
+static int	ft_check_overflow(int num, int c_minus)
+{
+	unsigned int	nb;
+
+	nb = num;
+	if (nb > 2147483648 && c_minus)
+		return (0);
+	if (nb > 2147483647 && !c_minus)
+		return (-1);
+	return (1);
 }
