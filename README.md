@@ -1,2 +1,2 @@
-## Sobre
-O objetivo do projeto é recriar algumas funções originárias da Libc
+# libft
+- The aim of this project is clone some libc functions
